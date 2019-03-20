@@ -26,3 +26,5 @@ Date:   Tue Mar 19 23:44:53 2019 +0200
 
  tiedosto1.txt => eka.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
+ 
+ muokataan, lisätään tämä rivi.
