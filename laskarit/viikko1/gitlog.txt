@@ -1,0 +1,28 @@
+commit a6c2b4d4380706198b2268988113a74ca3c6c0c0 (HEAD -> master)
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Wed Mar 20 00:47:09 2019 +0200
+
+    luotiin /tiedostoja
+
+ tiedostoja/file1 | 1 +
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 1 insertion(+)
+
+commit 1c07b3a6220eb36f1a637ee3062876d275f4ad2e
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Wed Mar 20 00:16:34 2019 +0200
+
+    muokattiin ekaa
+
+ eka.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5c101e2d59a1dc6f0a665087f554bb3089cb7ce0
+Author: eerorant <eero.rantala@helsinki.fi>
+Date:   Tue Mar 19 23:44:53 2019 +0200
+
+    uudelleennimettiin ykk<C3><B6>nen
+
+ tiedosto1.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
