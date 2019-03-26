@@ -1,0 +1,1 @@
+﻿26.3	1,5 h sovelluksen suunnittelua, käyttöliittymän suunnittelua
