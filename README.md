@@ -1,3 +1,1 @@
 **Ohjelmistotekniikka**, Eeron GitHub
-gittaaminen on hauskaaaaaaaaaaaaaaaa seffffffffffffffffffd awe4444fawerfaerfaer aerfverfaerf erferfg35 345t35t245t 4tg45gou45htg45uiog  45g4508gyu4598 fg8045u t4895gh 405g8u45 uiogehgj
-459t8yh4utrg k0u835 4thiog4erj gn094u5 tg4io5 g4rfg09u45i jorgel ghdfg olek fjgodi goie goeirj goeri gjerui ghweriu ghweruio ghero gerio ghwe progweroi gweogi weor ghweog weöoi ghweo g
