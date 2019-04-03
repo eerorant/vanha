@@ -1,5 +1,10 @@
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,10 +25,23 @@ public class CaveQuestApp extends Application{
         Knight knight = new Knight(300, 300);
         ImageView imageView = knight.getImageView();
         
+        Map<KeyCode, Boolean> pressedButtons = new HashMap<>();
+        
         scene.setOnKeyPressed(event -> {
-            knight.control(event);
+            pressedButtons.put(event.getCode(), true);
+        });
+
+        scene.setOnKeyReleased(event -> {
+            pressedButtons.put(event.getCode(), false);
         });
         
+        new AnimationTimer() {
+
+            @Override
+            public void handle(long now) {
+                knight.control(pressedButtons);
+            }
+        }.start();
         
 
         layout.getChildren().add(imageView);
