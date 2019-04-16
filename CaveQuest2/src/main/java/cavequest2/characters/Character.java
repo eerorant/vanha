@@ -29,12 +29,20 @@ public class Character {
         this.stack.setTranslateX(X);
         this.stack.setTranslateY(Y);
     }
-
+    
     public double getTranslateX() {
+        return this.stack.getTranslateX();
+    }
+    
+    public double getTranslateY() {
+        return this.stack.getTranslateY();
+    }
+
+    public double getCenterX() {
         return this.stack.getTranslateX() + (this.stack.getWidth() / 2);
     }
 
-    public double getTranslateY() {
+    public double getCenterY() {
         return this.stack.getTranslateY() + (this.stack.getHeight() / 2);
     }
 
@@ -44,8 +52,8 @@ public class Character {
 
     public Rectangle getShape() {
         Rectangle rect = new Rectangle();
-        rect.setX(this.getTranslateX());
-        rect.setY(this.getTranslateY());
+        rect.setX(this.getCenterX());
+        rect.setY(this.getCenterY());
         rect.setWidth(this.image.getWidth());
         rect.setHeight(this.image.getHeight());
         return rect;
@@ -82,6 +90,14 @@ public class Character {
     public void faceUpLeft() {
         this.stack.setRotate(315);
     }
+    
+    public void turnRight() {
+        this.stack.setRotate(this.stack.getRotate() + 45);
+    }
+    
+    public void turnLeft() {
+        this.stack.setRotate(this.stack.getRotate() - 45);
+    }
 
     public void move() {
         if (collision()) {
@@ -109,7 +125,7 @@ public class Character {
         forwardY *= 5;
 
         for (Shape wall : CaveQuest2App.walls) {
-            if (wall.contains(getTranslateX() + forwardX, getTranslateY() - forwardY)) {
+            if (wall.contains(getCenterX() + forwardX, getCenterY() - forwardY)) {
                 return true;
             }
         }

@@ -12,41 +12,50 @@ import java.util.Map;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-
 
 
 public class CaveQuest2App extends Application {
 
     public static List<Shape> walls = new ArrayList<>();
     public static List<Character> mobs = new ArrayList<>();
+    public static Pane layout = new Pane();
 
     @Override
     public void start(Stage ikkuna) {
-        //Here we define the layout, scene and the knight
-        Pane layout = new Pane();
-        layout.setPrefSize(600, 600);
-        Scene scene = new Scene(layout, 600, 600);
+        //Here we define the game's layout and scene
+        this.layout.setPrefSize(600, 600);
+        Scene scene = new Scene(this.layout, 600, 600);
+        
+        //Here we define the characters, the knight, and the mobs
         Knight knight = new Knight(300, 300);
-
         Skeleton skele = new Skeleton(120, 120);
         Zombie zomb = new Zombie(180, 120);
-
+        
+        //Here we add the characters to the layout
+        
         this.mobs.add(skele);
         this.mobs.add(zomb);
         for (Character mob : this.mobs) {
-            layout.getChildren().add(mob.getStackPane());
+            this.layout.getChildren().add(mob.getStackPane());
         }
-
+        this.layout.getChildren().add(knight.getStackPane());
+        
         //walls is the list of walls, i.e. collisionable obstacles
         Border border = new Border();
         this.walls.add(border.getBorder());
         for (Shape wall : walls) {
-            layout.getChildren().add(wall);
+            this.layout.getChildren().add(wall);
         }
 
         //Here we define movement. We use a hashmap and AnimationTimer() to make the movement a smooth 60 fps
@@ -59,19 +68,41 @@ public class CaveQuest2App extends Application {
             pressedButtons.put(event.getCode(), false);
         });
 
+        //We use the variable timeNow to control the knight's attack speed
         new AnimationTimer() {
-
-            @Override
-            public void handle(long now) {
-                knight.control(pressedButtons);
+            
+           @Override
+            public void handle(long timeNow) {
+                knight.control(pressedButtons, timeNow);
+                zomb.control();
                 if (knight.intersects()) {
+                    System.out.println("Game over");
                     stop();
                 }
             }
         }.start();
 
-        layout.getChildren().add(knight.getStackPane());
-        ikkuna.setScene(scene);
+        
+        //Here we define the scene for the main menu
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setVgap(4);
+        grid.setHgap(12);
+        Scene sceneMenu = new Scene(grid, 600, 600);
+
+        TextField name = new TextField();
+        name.setMaxWidth(100);
+        Button start = new Button("Start game");
+        start.setOnAction((event) -> {
+            ikkuna.setScene(scene);
+        });
+        
+        Label nameFieldLabel = new Label("Name:");
+        grid.add(nameFieldLabel, 0, 0);
+        grid.add(name, 1, 0);
+        grid.add(start, 1, 1);
+
+        ikkuna.setScene(sceneMenu);
         ikkuna.setTitle("Cave Quest");
         ikkuna.show();
     }
