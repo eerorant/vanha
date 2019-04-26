@@ -19,3 +19,5 @@
 15.4	1h Yleistä säätöä
 
 16.4	1h Testien testaamista
+
+26.4	5h Uusi taso alkaa kaikkien hirviöiden kukistuttua, en ymmärrä testausta, testit eivät toimi, liittyy javafx:ään ja GUI:hin

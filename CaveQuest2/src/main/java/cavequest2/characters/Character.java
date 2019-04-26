@@ -131,5 +131,9 @@ public class Character {
         }
         return false;
     }
+    
+    public void control() {
+        
+    }
 
 }

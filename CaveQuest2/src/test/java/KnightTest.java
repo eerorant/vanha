@@ -1,4 +1,5 @@
-import cavequest2.characters.Character;
+import cavequest2.characters.Knight;
+
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,9 +12,9 @@ import static org.junit.Assert.*;
  *
  * @author Eero
  */
-public class CharacterTest {
-    Character character;
-    public CharacterTest() {
+public class KnightTest {
+    Knight knight;
+    public KnightTest() {
     }
     
     @BeforeClass
@@ -27,7 +28,7 @@ public class CharacterTest {
     
     @Before
     public void setUp() {
-        character = new Character("File:knight.png", 100, 100);
+        knight = new Knight(100, 100);
     }
     
     @After
@@ -38,10 +39,10 @@ public class CharacterTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     
-    //I couldn't do tests this week, maybe next week
-//    @Test
-//    public void hello() {
-//        double X = character.getTranslateX();
-//        assertEquals(100, X);
-//    }
+    //These tests dont work and I have no idea how to make them work
+    @Test
+    public void hello() {
+        double X = knight.getTranslateX();
+        assertEquals(100, X);
+    }
 }

@@ -8,6 +8,7 @@ public class Zombie extends Character {
         
     }
     
+    @Override
     public void control() {
         int randomNumber = ran.nextInt(100);
         if (randomNumber == 0) {

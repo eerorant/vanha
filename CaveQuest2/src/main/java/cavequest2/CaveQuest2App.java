@@ -30,33 +30,37 @@ public class CaveQuest2App extends Application {
     public static List<Shape> walls = new ArrayList<>();
     public static List<Character> mobs = new ArrayList<>();
     public static Pane layout = new Pane();
+    private Scene scene = new Scene(this.layout, 600, 600);
+    
 
     @Override
     public void start(Stage ikkuna) {
-        //Here we define the game's layout and scene
-        this.layout.setPrefSize(600, 600);
-        Scene scene = new Scene(this.layout, 600, 600);
+        //Here we define the layout and scene for the main menu
+        Label instructions = new Label("Use the arrow keys to move and Space bar to attack.");
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setVgap(4);
+        grid.setHgap(12);
+        Scene sceneMenu = new Scene(grid, 600, 600);
         
-        //Here we define the characters, the knight, and the mobs
+        
+        TextField name = new TextField();
+        name.setMaxWidth(100);
+        Button start = new Button("Start game");
+        start.setOnAction((event) -> {
+            
+            ikkuna.setScene(this.scene);
+        });
+
+        Label nameFieldLabel = new Label("Name:");
+        grid.add(nameFieldLabel, 0, 0);
+        grid.add(name, 1, 0);
+        grid.add(start, 1, 1);
+        grid.add(instructions, 1, 2);
+        
+        this.initiateLevel();
         Knight knight = new Knight(300, 300);
-        Skeleton skele = new Skeleton(120, 120);
-        Zombie zomb = new Zombie(180, 120);
-        
-        //Here we add the characters to the layout
-        
-        this.mobs.add(skele);
-        this.mobs.add(zomb);
-        for (Character mob : this.mobs) {
-            this.layout.getChildren().add(mob.getStackPane());
-        }
         this.layout.getChildren().add(knight.getStackPane());
-        
-        //walls is the list of walls, i.e. collisionable obstacles
-        Border border = new Border();
-        this.walls.add(border.getBorder());
-        for (Shape wall : walls) {
-            this.layout.getChildren().add(wall);
-        }
 
         //Here we define movement. We use a hashmap and AnimationTimer() to make the movement a smooth 60 fps
         Map<KeyCode, Boolean> pressedButtons = new HashMap<>();
@@ -73,8 +77,18 @@ public class CaveQuest2App extends Application {
             
            @Override
             public void handle(long timeNow) {
+                if (mobs.size() == 0) {
+                    initiateLevel();
+                    knight.getStackPane().setTranslateX(300);
+                    knight.getStackPane().setTranslateY(300);
+                    layout.getChildren().add(knight.getStackPane());
+                }
                 knight.control(pressedButtons, timeNow);
-                zomb.control();
+                
+                for (Character c : mobs) {
+                    c.control();
+                }
+                
                 if (knight.intersects()) {
                     System.out.println("Game over");
                     stop();
@@ -83,28 +97,36 @@ public class CaveQuest2App extends Application {
         }.start();
 
         
-        //Here we define the scene for the main menu
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setVgap(4);
-        grid.setHgap(12);
-        Scene sceneMenu = new Scene(grid, 600, 600);
-
-        TextField name = new TextField();
-        name.setMaxWidth(100);
-        Button start = new Button("Start game");
-        start.setOnAction((event) -> {
-            ikkuna.setScene(scene);
-        });
         
-        Label nameFieldLabel = new Label("Name:");
-        grid.add(nameFieldLabel, 0, 0);
-        grid.add(name, 1, 0);
-        grid.add(start, 1, 1);
 
         ikkuna.setScene(sceneMenu);
         ikkuna.setTitle("Cave Quest");
         ikkuna.show();
+    }
+    
+    public void initiateLevel() {
+        //Here we define the game's layout and scene
+        this.layout.setPrefSize(600, 600);
+        this.layout.getChildren().clear();
+
+        //Here we define the characters, and the mobs
+        Skeleton skele = new Skeleton(120, 120);
+        Zombie zomb = new Zombie(180, 120);
+
+        //Here we add the characters to the layout
+        this.mobs.add(skele);
+        this.mobs.add(zomb);
+        for (Character mob : this.mobs) {
+            this.layout.getChildren().add(mob.getStackPane());
+        }
+
+        //walls is the list of walls, i.e. collisionable obstacles
+        this.walls.clear();
+        Border border = new Border();
+        this.walls.add(border.getBorder());
+        for (Shape wall : walls) {
+            this.layout.getChildren().add(wall);
+        }
     }
 
     public static void main(String[] args) {
