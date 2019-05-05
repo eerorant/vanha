@@ -21,3 +21,7 @@
 16.4	1h Testien testaamista
 
 26.4	5h Uusi taso alkaa kaikkien hirviöiden kukistuttua, en ymmärrä testausta, testit eivät toimi, liittyy javafx:ään ja GUI:hin
+
+4.5	2h Testit toimivat vihdoin
+
+5.5	5h Lopullista deadlinea varten valmistelua, dokumentaatiota ym.
