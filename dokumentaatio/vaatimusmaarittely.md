@@ -14,7 +14,7 @@ Siinä vaiheessa voi kirjoittaa nimensä "High scoreihin".
 * Möröt
 * Taisteleminen
 
-#Lopullinen ohjelma
+# Lopullinen ohjelma
 Luovuin tason sisällä olevista seinistä, joten tasot eivät niinkään ole sokkeloita vaan vain huoneita. Pelissä ei myöskään ole minkäänlaista valaistusmekaniikkaa.
 Pelissä ei ole elämää, vaan peli päättyy yhdestä osumasta.
 
