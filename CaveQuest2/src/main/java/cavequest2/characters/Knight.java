@@ -11,7 +11,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 
-
+/**
+ * luokka on pelaajan ohjaamaa ritaria varten.
+ * 
+ */
 public class Knight extends Character {
     
     private long timeOfAttack;
@@ -27,6 +30,12 @@ public class Knight extends Character {
         this.swingStack.getChildren().add(swing);
     }
 
+    /**
+     * metodia kutsutaan main-luokassa 60 kertaa sekunnissa. Se saa parametrina hashmapin painettuina olevista napeista
+     * ja ohjaa hahmoa sen mukaan.
+     * @param pressedButtons hashmap painettuna olevista näppäimistön napeista.
+     * @param timeNow aika metodia kutsuttaessa, sitä käytetään rajoittamaan ritarin iskuja
+     */
     public void control(Map<KeyCode, Boolean> pressedButtons, long timeNow) {
         //There's a half a second cooldown on attacking
         if (timeNow - this.timeOfAttack > 100000000) {
@@ -66,7 +75,11 @@ public class Knight extends Character {
             move();
         }
     }
-
+    
+    /**
+     * metodi testaa onko ritari törmännyt hirviöön
+     * @return true jos ritari on törmännyt hirviöön
+     */
     public Boolean intersects() {
         for (Character mob : CaveQuest2App.mobs) {
             Shape area = Shape.intersect(this.getShape(), mob.getShape());
@@ -77,6 +90,10 @@ public class Knight extends Character {
         return false;
     }
     
+    /**
+     * Ritari hyökkää eteenpäin. metodi luo suorakulmion ritarin eteen ja tarkistaa leikkaako se jotain hirviötä. 
+     * Jos isku osuu hirviöön, hirviö poistetaan pelistä, ja pelaaja saa pisteen.
+     */
     public void attack() {
         System.out.println(CaveQuest2App.mobs.size());
         double forwardX = Math.sin(Math.toRadians(getRotate()));
@@ -94,6 +111,7 @@ public class Knight extends Character {
             if (mob.getShape().intersects(this.swingStack.getBoundsInParent())) {
                 CaveQuest2App.mobs.remove(i);
                 CaveQuest2App.layout.getChildren().remove(i);
+                CaveQuest2App.score++;
                 System.out.println("Hit!");
             }
         }

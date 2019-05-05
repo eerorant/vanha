@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -21,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -31,6 +33,8 @@ public class CaveQuest2App extends Application {
     public static List<Character> mobs = new ArrayList<>();
     public static Pane layout = new Pane();
     private Scene scene = new Scene(this.layout, 600, 600);
+    private int level = 1;
+    public static int score = 0;
     
 
     @Override
@@ -48,7 +52,6 @@ public class CaveQuest2App extends Application {
         name.setMaxWidth(100);
         Button start = new Button("Start game");
         start.setOnAction((event) -> {
-            
             ikkuna.setScene(this.scene);
         });
 
@@ -78,6 +81,7 @@ public class CaveQuest2App extends Application {
            @Override
             public void handle(long timeNow) {
                 if (mobs.size() == 0) {
+                    level++;
                     initiateLevel();
                     knight.getStackPane().setTranslateX(300);
                     knight.getStackPane().setTranslateY(300);
@@ -96,26 +100,33 @@ public class CaveQuest2App extends Application {
             }
         }.start();
 
-        
-        
-
         ikkuna.setScene(sceneMenu);
         ikkuna.setTitle("Cave Quest");
         ikkuna.show();
     }
     
+    /**
+     * metodi aloittaa uuden tason
+     */
     public void initiateLevel() {
         //Here we define the game's layout and scene
         this.layout.setPrefSize(600, 600);
         this.layout.getChildren().clear();
 
-        //Here we define the characters, and the mobs
-        Skeleton skele = new Skeleton(120, 120);
-        Zombie zomb = new Zombie(180, 120);
+
+        //Here we define the characters, and the mobs, randomness is used for placing the mobs
+        Random ran = new Random();
+        for (int i = 0; i < this.level; i++) {
+            if (i % 2 == 0) {
+                Skeleton skele = new Skeleton(100 + ran.nextInt(100), 100 + ran.nextInt(400));
+                this.mobs.add(skele);
+            } else {
+                Zombie zomb = new Zombie(400 + ran.nextInt(100), 100 + ran.nextInt(400));
+                this.mobs.add(zomb);
+            }
+        }
 
         //Here we add the characters to the layout
-        this.mobs.add(skele);
-        this.mobs.add(zomb);
         for (Character mob : this.mobs) {
             this.layout.getChildren().add(mob.getStackPane());
         }

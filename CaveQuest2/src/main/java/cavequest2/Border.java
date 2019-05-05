@@ -11,9 +11,10 @@ import static javafx.scene.shape.Shape.subtract;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
- *
- * @author Eero
+ *Luokka luo rajat pelin tasoille. Se arpoo rajat ja luo kahdeksankulmion.
+ * 
  */
 public class Border {
 
@@ -21,8 +22,6 @@ public class Border {
 
     public Border() {
         Random random = new Random();
-//        int alkuX = random.nextInt(100);
-//        int alkuY = random.nextInt(100);
 
         //random points
         double x1 = (double) random.nextInt(100);
@@ -45,11 +44,6 @@ public class Border {
         Polygon poly = new Polygon();
         poly.getPoints().addAll(new Double[]{0.0, 0.0, 600.0, 0.0, 600.0, 600.0, 0.0, 600.0});
 
-//        Polygon octagon = new Polygon();
-//        octagon.getPoints().addAll(new Double[]{100.0, 100.0, 300.0, 50.0, 500.0, 100.0, 550.0, 300.0, 500.0, 500.0, 300.0, 550.0, 100.0, 500.0, 50.0, 300.0});
-//        
-//        Polygon square = new Polygon();
-//        square.getPoints().addAll(new Double[]{100.0, 100.0, 500.0, 100.0, 500.0, 500.0, 100.0, 500.0});
         Polygon randomPolygon = new Polygon();
         randomPolygon.getPoints().addAll(new Double[]{x1, y1, x2, y2, x3, y3, x4, y4, x5, y5, x6, y6, x7, y7, x8, y8});
 

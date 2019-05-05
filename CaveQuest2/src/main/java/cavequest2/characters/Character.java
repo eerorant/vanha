@@ -17,6 +17,14 @@ import javafx.scene.shape.Shape;
  *
  * @author Eero
  */
+
+/**
+ *Character-luokka on yliluokka ritarille ja hirviöille.
+ *
+ * @param   imageFile   hahmon kuvatiedoston sijainti
+ * @param   X   hahmon x-koordinaatti
+ * @param Y hahmon y-koordinaatti
+ */
 public class Character {
 
     private StackPane stack = new StackPane();
@@ -50,6 +58,10 @@ public class Character {
         return this.stack.getRotate();
     }
 
+    /**
+     * metodia käytetään collisionia testatessa, eli siis jos ritari osuu hirviöön.
+     * @return hahmon muotoinen ja kokoinen suorakulmio
+     */
     public Rectangle getShape() {
         Rectangle rect = new Rectangle();
         rect.setX(this.getCenterX());
@@ -93,12 +105,21 @@ public class Character {
     
     public void turnRight() {
         this.stack.setRotate(this.stack.getRotate() + 45);
+        if (this.getRotate() >= 360) {
+            this.stack.setRotate(this.getRotate() - 360);
+        }
     }
     
     public void turnLeft() {
         this.stack.setRotate(this.stack.getRotate() - 45);
+        if (this.getRotate() <= 0) {
+            this.stack.setRotate(this.getRotate() + 360);
+        }
     }
-
+    
+    /**
+     * metodi liikuttaa hahmoa sen katsomaan suuntaan. Jos hahmon edessä on seinä, hahmo ei liiku.
+     */
     public void move() {
         if (collision()) {
             return;
@@ -117,6 +138,10 @@ public class Character {
         return this.stack;
     }
 
+    /**
+     * Metodi testaa onko hahmon edessä seinä.
+     * @return true, jos edessä on seinä.
+     */
     public Boolean collision() {
         double forwardX = Math.sin(Math.toRadians(getRotate()));
         double forwardY = Math.cos(Math.toRadians(getRotate()));

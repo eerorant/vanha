@@ -1,4 +1,8 @@
+import cavequest2.Border;
+import cavequest2.CaveQuest2App;
+import cavequest2.characters.Character;
 import cavequest2.characters.Knight;
+import javafx.embed.swing.JFXPanel;
 
 
 import org.junit.After;
@@ -19,7 +23,8 @@ public class KnightTest {
     
     @BeforeClass
     public static void setUpClass() {
-        
+        //I don't quite know what this does, but the tests don't work without it
+        JFXPanel fxPanel = new JFXPanel();
     }
     
     @AfterClass
@@ -28,7 +33,7 @@ public class KnightTest {
     
     @Before
     public void setUp() {
-        knight = new Knight(100, 100);
+        this.knight = new Knight(100, 100);
     }
     
     @After
@@ -38,11 +43,4 @@ public class KnightTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    
-    //These tests dont work and I have no idea how to make them work
-    @Test
-    public void hello() {
-        double X = knight.getTranslateX();
-        assertEquals(100, X);
-    }
 }

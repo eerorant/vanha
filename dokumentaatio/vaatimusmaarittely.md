@@ -13,3 +13,9 @@ Siinä vaiheessa voi kirjoittaa nimensä "High scoreihin".
 * Liikkuminen
 * Möröt
 * Taisteleminen
+
+#Lopullinen ohjelma
+Luovuin tason sisällä olevista seinistä, joten tasot eivät niinkään ole sokkeloita vaan vain huoneita. Pelissä ei myöskään ole minkäänlaista valaistusmekaniikkaa.
+Pelissä ei ole elämää, vaan peli päättyy yhdestä osumasta.
+
+Ohjelmassa on kuitenkin saavutettu useita vaatimusmäärittelyn asettamia tavoitteita, kuten tasojen satunnaisuus, taisteleminen ja eri tasot.
